@@ -20,7 +20,7 @@ public class Insert extends HttpServlet {
         PreparedStatement statement;
 
         try {
-            connection = DBConnectionDatasource.getConnection();
+            connection = DBConnection.getConnection();
 
             String insert = "insert into student(id, firstname, lastname) values (?,?,?)";
             statement = connection.prepareStatement(insert);

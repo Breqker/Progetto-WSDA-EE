@@ -1,9 +1,13 @@
 <%@ page import="java.sql.*" %>
+<%@ page import="javax.naming.Context" %>
+<%@ page import="javax.naming.InitialContext" %>
+<%@ page import="javax.sql.DataSource" %>
 <%
-    String connectionURL = "jdbc:mysql://localhost:3306/mlc?useLegacyDatetimeCode=false&serverTimezone=Europe/Rome";
-    Connection connection;
-    Statement statement;
-    ResultSet rs;
+    Context ctx = null;
+    DataSource ds = null;
+    Connection connection = null;
+    Statement statement = null;
+    ResultSet rs = null;
 %>
 <!DOCTYPE html>
 <html>
@@ -12,13 +16,19 @@
 </head>
 <body>
 <%
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    connection = DriverManager.getConnection(connectionURL, "root", "PA846645");
+    ctx = new InitialContext();
+    ds = (DataSource) ctx.lookup("java:comp/env/jdbc/caf");
+    connection = ds.getConnection();
     statement = connection.createStatement();
-    rs = statement.executeQuery("SELECT * FROM student");
+    rs = statement.executeQuery("SELECT * FROM impianto");
     while (rs.next()) {
 %>
-<%= rs.getString("id") + ") " + rs.getString("firstname") + ", " + rs.getString("lastname") + "<br/>" %>
+
+<%= rs.getString("idimpianto") + ") "%>
+<%= rs.getString("descrizione") + ", "%>
+<%= rs.getBigDecimal("latitudine") + ", "%>
+<%= rs.getBigDecimal("longitudine") + "<br>"%>
+
 <%
     }
     rs.close();

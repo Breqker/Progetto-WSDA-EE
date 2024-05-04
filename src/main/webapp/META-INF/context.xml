@@ -9,7 +9,7 @@
 		maxWait="1000"
 		name="jdbc/caf"
 		username="root"
-		password="Amedeo01"
+		password="root"
 		type="javax.sql.DataSource"
 		url="jdbc:mysql://localhost:3306/caf?useLegacyDatetimeCode=false&amp;serverTimezone=Europe/Rome"
 		testOnBorrow="true"

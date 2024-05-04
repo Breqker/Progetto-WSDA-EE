@@ -11,8 +11,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@WebServlet(name = "testDBDatasourceServlet", value = "/testdb-datasource")
-public class TestDBDatasource extends HttpServlet {
+@WebServlet(name = "testDBDatasourceServlet", value = "/testdb")
+public class TestDB extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -22,7 +22,7 @@ public class TestDBDatasource extends HttpServlet {
         ResultSet rs;
 
         try {
-            connection = DBConnectionDatasource.getConnection();
+            connection = DBConnection.getConnection();
             statement = connection.createStatement();
             rs = statement.executeQuery("SELECT * FROM impianto");
             while (rs.next()) {

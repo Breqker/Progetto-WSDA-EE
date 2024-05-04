@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 @WebServlet(name = "deleteServlet", value = "/delete")
 public class Delete extends HttpServlet {
@@ -21,7 +20,7 @@ public class Delete extends HttpServlet {
         PreparedStatement statement;
 
         try {
-            connection = DBConnectionDatasource.getConnection();
+            connection = DBConnection.getConnection();
 
             String delete = "delete from student where id=?";
             statement = connection.prepareStatement(delete);

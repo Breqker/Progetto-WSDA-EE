@@ -22,7 +22,7 @@ public class Query extends HttpServlet {
         ResultSet rs;
 
         try {
-            connection = DBConnectionDatasource.getConnection();
+            connection = DBConnection.getConnection();
             String query = "select * from impianto";
             int id = Integer.parseInt(request.getParameter("queryid"));
 
