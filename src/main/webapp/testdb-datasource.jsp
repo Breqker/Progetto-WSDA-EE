@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Test DB</title>
+    <title>Test DB1</title>
 </head>
 <body>
 <%
