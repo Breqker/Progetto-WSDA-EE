@@ -23,9 +23,6 @@
     <label for="durata">Durata:</label>
     <input type="text" id="durata" name="durata"><br><br>
 
-    <label for="dataora">Data e Ora (YYYY-MM-DD HH:MM:SS):</label>
-    <input type="text" id="dataora" name="dataora"><br><br>
-
     <input type="submit" value="Invia">
 </form>
 </body>
