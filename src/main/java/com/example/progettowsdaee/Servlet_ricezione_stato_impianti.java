@@ -1,4 +1,5 @@
 package com.example.progettowsdaee;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.annotation.WebServlet;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-@WebServlet(name = "Servlet_ricezione_stato_impianti", urlPatterns = "/ricezione")
+@WebServlet(name = "Servlet_ricezione_stato_impianti", urlPatterns = "/monitoraggio")
 public class Servlet_ricezione_stato_impianti extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin", "*"); // CORS settings
@@ -33,16 +34,16 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/caf";
             String username = "root";
-            String password = "Amedeo01";
+            String password = "root";
 
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
-                String query = "INSERT INTO visualizione (idimpianto, idpalinsesto, idcartellone, durata) VALUES (?, ?, ?, ?)";
+                String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
                 PreparedStatement statement = conn.prepareStatement(query);
 
-                statement.setString(1, impianto.getIdImpianto());
-                statement.setString(2, impianto.getDescrizione());
-                statement.setString(3, impianto.getDescrizione());
-                statement.setString(4, impianto.getIdImpianto());
+                statement.setInt(1, impianto.getIdImpianto());
+                statement.setBoolean(2, impianto.getDescrizione());
+                statement.setDouble(3, impianto.getLatitudine());
+                statement.setDouble(4, impianto.getLongitudine());
 
                 statement.executeUpdate();
             }
@@ -55,7 +56,12 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
             // Invia una risposta di successo al client
             response.setStatus(HttpServletResponse.SC_OK);
             PrintWriter out = response.getWriter();
-            out.println("Segnalazione ricevuta e salvata con successo aaa");
+            out.println("Segnalazione ricevuta e salvata con successo");
+        }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Inoltra la richiesta al tuo file JSP
+        RequestDispatcher dispatcher = request.getRequestDispatcher("monitoraggio.jsp");
+        dispatcher.forward(request, response);
         }
     }
 
