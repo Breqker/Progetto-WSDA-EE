@@ -55,7 +55,7 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
             // Invia una risposta di successo al client
             response.setStatus(HttpServletResponse.SC_OK);
             PrintWriter out = response.getWriter();
-            out.println("Segnalazione ricevuta e salvata con successo");
+            out.println("Segnalazione ricevuta e salvata con successo aaa");
         }
     }
 

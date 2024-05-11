@@ -52,7 +52,7 @@ public class Impianto {
     public String toString() {
         return "Impianto{" +
                 "idImpianto='" + idImpianto + '\'' +
-                ", descrizione='" + descrizione + '\'' +
+                ", descrizione_='" + descrizione + '\'' +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
                 '}';
