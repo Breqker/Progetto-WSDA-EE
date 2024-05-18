@@ -1,5 +1,5 @@
 package com.example.progettowsdaee;
-import jakarta.servlet.RequestDispatcher;
+
 import jakarta.servlet.annotation.WebServlet;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,16 +8,33 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import java.io.StringReader;
+import java.sql.*;
 
-@WebServlet(name = "Servlet_ricezione_stato_impianti", urlPatterns = "/monitoraggio")
+@WebServlet(name = "Servlet_ricezione_stato_impianti", urlPatterns = "/monitoraggio_servlet")
 public class Servlet_ricezione_stato_impianti extends HttpServlet {
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        out.println("<html><head><title>Funziona</title></head><body><h1>Funziona</h1></body></html>");
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "*"); // CORS settings
+        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
 
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
@@ -27,46 +44,45 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         }
         String jsonString = sb.toString();
 
-        ObjectMapper mapper = new ObjectMapper();
-        Impianto impianto = mapper.readValue(jsonString, Impianto.class);
+        JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
+        JsonObject jsonObject = jsonReader.readObject();
+
+        String idImpianto = jsonObject.getString("idImpianto");
+        String descrizione = jsonObject.getString("descrizione");
+        double latitudine = jsonObject.getJsonNumber("latitudine").doubleValue();
+        double longitudine = jsonObject.getJsonNumber("longitudine").doubleValue();
+
+        Connection connection = null;
+        PreparedStatement statement = null;
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/caf";
-            String username = "root";
-            String password = "root";
+            connection = DBC.getConnection();
+            String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
+            statement = connection.prepareStatement(query);
+            statement.setString(1, idImpianto);
+            statement.setString(2, descrizione);
+            statement.setDouble(3, latitudine);
+            statement.setDouble(4, longitudine);
 
-            try (Connection conn = DriverManager.getConnection(url, username, password)) {
-                String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
-                PreparedStatement statement = conn.prepareStatement(query);
+            statement.executeUpdate();
 
-                statement.setInt(1, impianto.getIdImpianto());
-                statement.setBoolean(2, impianto.getDescrizione());
-                statement.setDouble(3, impianto.getLatitudine());
-                statement.setDouble(4, impianto.getLongitudine());
-
-                statement.executeUpdate();
-            }
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore durante l'accesso al database");
-            return;
-        }
-
-            // Invia una risposta di successo al client
             response.setStatus(HttpServletResponse.SC_OK);
             PrintWriter out = response.getWriter();
             out.println("Segnalazione ricevuta e salvata con successo");
-        }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Inoltra la richiesta al tuo file JSP
-        RequestDispatcher dispatcher = request.getRequestDispatcher("monitoraggio.jsp");
-        dispatcher.forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Errore durante l'accesso al database: " + e.getMessage());
+        } finally {
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
         }
     }
-
-
-
-
-
-
+}
