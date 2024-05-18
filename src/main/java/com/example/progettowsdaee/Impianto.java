@@ -1,13 +1,13 @@
 package com.example.progettowsdaee;
 
 public class Impianto {
-    private String idImpianto;
-    private String descrizione;
+    private int idImpianto;
+    private Boolean descrizione;
     private double latitudine;
     private double longitudine;
 
     // Costruttore
-    public Impianto(String idImpianto, String descrizione, double latitudine, double longitudine) {
+    public Impianto(int idImpianto, boolean descrizione, double latitudine, double longitudine) {
         this.idImpianto = idImpianto;
         this.descrizione = descrizione;
         this.latitudine = latitudine;
@@ -15,19 +15,19 @@ public class Impianto {
     }
 
     // Metodi getter e setter
-    public String getIdImpianto() {
+    public int getIdImpianto() {
         return idImpianto;
     }
 
-    public void setIdImpianto(String idImpianto) {
+    public void setIdImpianto(int idImpianto) {
         this.idImpianto = idImpianto;
     }
 
-    public String getDescrizione() {
+    public boolean getDescrizione() {
         return descrizione;
     }
 
-    public void setDescrizione(String descrizione) {
+    public void setDescrizione(boolean descrizione) {
         this.descrizione = descrizione;
     }
 

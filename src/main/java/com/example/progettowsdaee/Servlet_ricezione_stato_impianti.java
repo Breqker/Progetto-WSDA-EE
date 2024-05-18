@@ -47,8 +47,8 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
         JsonObject jsonObject = jsonReader.readObject();
 
-        String idImpianto = jsonObject.getString("idImpianto");
-        String descrizione = jsonObject.getString("descrizione");
+        int idImpianto = jsonObject.getInt("idImpianto");
+        boolean descrizione = jsonObject.getBoolean("descrizione");
         double latitudine = jsonObject.getJsonNumber("latitudine").doubleValue();
         double longitudine = jsonObject.getJsonNumber("longitudine").doubleValue();
 
@@ -59,8 +59,8 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
             connection = DBConnection.getConnection();
             String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
-            statement.setString(1, idImpianto);
-            statement.setString(2, descrizione);
+            statement.setInt(1, idImpianto);
+            statement.setBoolean(2, descrizione);
             statement.setDouble(3, latitudine);
             statement.setDouble(4, longitudine);
 
