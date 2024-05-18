@@ -56,7 +56,7 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         PreparedStatement statement = null;
 
         try {
-            connection = DBC.getConnection();
+            connection = DBConnection.getConnection();
             String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
             statement.setString(1, idImpianto);

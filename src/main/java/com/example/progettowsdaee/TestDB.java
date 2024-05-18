@@ -11,7 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@WebServlet(name = "testDBDatasourceServlet", value = "/testdb")
+@WebServlet(name = "testDB", value = "/testdb")
 public class TestDB extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
