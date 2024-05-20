@@ -14,24 +14,22 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+
 @WebServlet(name = "Servlet_get_from_DB", urlPatterns = "/getImpianti")
 public class Servlet_get_from_DB extends HttpServlet {
 
-    private void setCorsHeaders(HttpServletResponse response) {
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
         response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
         response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
         response.setHeader("Access-Control-Allow-Credentials", "true");
-    }
-
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        setCorsHeaders(response);
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        setCorsHeaders(response);
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         Connection connection = null;
@@ -39,6 +37,7 @@ public class Servlet_get_from_DB extends HttpServlet {
         List<Impianto> impianti = new ArrayList<>();
 
         try {
+
             connection = DBConnection.getConnection();
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM caf.impianto");
             ResultSet resultSet = statement.executeQuery();
