@@ -1,4 +1,4 @@
-package com.example.progettowsdaee;
+package com.example.progettowsdaee.Servlet;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

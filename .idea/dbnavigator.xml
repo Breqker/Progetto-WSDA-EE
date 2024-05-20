@@ -57,10 +57,10 @@
       <lookup-filters>
         <lookup-objects>
           <object-type name="SCHEMA" enabled="true" />
-          <object-type name="USER" enabled="false" />
-          <object-type name="ROLE" enabled="false" />
-          <object-type name="PRIVILEGE" enabled="false" />
-          <object-type name="CHARSET" enabled="false" />
+          <object-type name="USER" enabled="true" />
+          <object-type name="ROLE" enabled="true" />
+          <object-type name="PRIVILEGE" enabled="true" />
+          <object-type name="CHARSET" enabled="true" />
           <object-type name="TABLE" enabled="true" />
           <object-type name="VIEW" enabled="true" />
           <object-type name="MATERIALIZED VIEW" enabled="true" />
@@ -68,17 +68,17 @@
           <object-type name="CONSTRAINT" enabled="true" />
           <object-type name="DATASET TRIGGER" enabled="true" />
           <object-type name="DATABASE TRIGGER" enabled="true" />
-          <object-type name="SYNONYM" enabled="false" />
+          <object-type name="SYNONYM" enabled="true" />
           <object-type name="SEQUENCE" enabled="true" />
           <object-type name="PROCEDURE" enabled="true" />
           <object-type name="FUNCTION" enabled="true" />
           <object-type name="PACKAGE" enabled="true" />
           <object-type name="TYPE" enabled="true" />
-          <object-type name="DIMENSION" enabled="false" />
-          <object-type name="CLUSTER" enabled="false" />
+          <object-type name="DIMENSION" enabled="true" />
+          <object-type name="CLUSTER" enabled="true" />
           <object-type name="DBLINK" enabled="true" />
         </lookup-objects>
-        <force-database-load value="false" />
+        <force-database-load value="true" />
         <prompt-connection-selection value="true" />
         <prompt-schema-selection value="true" />
       </lookup-filters>
@@ -101,7 +101,7 @@
     <dataset-editor-settings>
       <text-editor-popup>
         <active value="false" />
-        <active-if-empty value="false" />
+        <active-if-empty value="true" />
         <data-length-threshold value="100" />
         <popup-delay value="1000" />
       </text-editor-popup>

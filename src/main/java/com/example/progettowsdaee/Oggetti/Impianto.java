@@ -1,20 +1,12 @@
-package com.example.progettowsdaee;
+package com.example.progettowsdaee.Oggetti;
 
 public class Impianto {
     private String idImpianto;
-    private String descrizione;
+    private String idPalinsesto;
     private double latitudine;
     private double longitudine;
 
-    // Costruttore
-    public Impianto(String idImpianto, String descrizione, double latitudine, double longitudine) {
-        this.idImpianto = idImpianto;
-        this.descrizione = descrizione;
-        this.latitudine = latitudine;
-        this.longitudine = longitudine;
-    }
-
-    // Metodi getter e setter
+    // Getters and Setters
     public String getIdImpianto() {
         return idImpianto;
     }
@@ -23,12 +15,12 @@ public class Impianto {
         this.idImpianto = idImpianto;
     }
 
-    public String getDescrizione() {
-        return descrizione;
+    public String getIdPalinsesto() {
+        return idPalinsesto;
     }
 
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
+    public void setIdPalinsesto(String idPalinsesto) {
+        this.idPalinsesto = idPalinsesto;
     }
 
     public double getLatitudine() {
@@ -47,12 +39,13 @@ public class Impianto {
         this.longitudine = longitudine;
     }
 
+
     // Metodo toString per la rappresentazione testuale dell'oggetto
     @Override
     public String toString() {
         return "Impianto{" +
-                "idImpianto='" + idImpianto + '\'' +
-                ", descrizione_='" + descrizione + '\'' +
+                "id_impianto='" + idImpianto + '\'' +
+                ", id_palinsesto='" + idPalinsesto + '\'' +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
                 '}';
