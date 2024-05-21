@@ -5,12 +5,8 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
+<h1><%= "SERVER ATTIVO" %></h1>
 <br/>
-<a href="hello-servlet">Hello Servlet</a>
-<br/>
-<a href="testdb">Test DB</a>
-<br/>
-<a href="monitoraggio">Monitoraggio</a>
+<a href="test_tab_segnalazioni.jsp">*TEST TABELLA SEGNALAZIONI*</a>
 </body>
 </html>

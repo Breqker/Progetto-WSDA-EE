@@ -48,22 +48,25 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
         JsonObject jsonObject = jsonReader.readObject();
 
-        int idImpianto = jsonObject.getInt("idImpianto");
-        boolean descrizione = jsonObject.getBoolean("descrizione");
-        double latitudine = jsonObject.getJsonNumber("latitudine").doubleValue();
-        double longitudine = jsonObject.getJsonNumber("longitudine").doubleValue();
+        // Recupera i dati dalla richiesta JSON
+        String idSegnalazione = jsonObject.getString("idSegnalazione");
+        String codImpianto = jsonObject.getString("codImpianto");
+        String codPalinsesto = jsonObject.getString("codPalinsesto");
+        String codCartellone = jsonObject.getString("codCartellone");
+        int durataVisual = jsonObject.getInt("durataVisual");
 
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = DBConnection.getConnection();
-            String query = "INSERT INTO impianto (idimpianto, descrizione, latitudine, longitudine) VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO segnalazioni (id_segnalazione, cod_impianto, cod_palinsesto, cod_cartellone, durata_visual) VALUES (?, ?, ?, ?, ?)";
             statement = connection.prepareStatement(query);
-            statement.setInt(1, idImpianto);
-            statement.setBoolean(2, descrizione);
-            statement.setDouble(3, latitudine);
-            statement.setDouble(4, longitudine);
+            statement.setString(1, idSegnalazione);
+            statement.setString(2, codImpianto);
+            statement.setString(3, codPalinsesto);
+            statement.setString(4, codCartellone);
+            statement.setInt(5, durataVisual);
 
             statement.executeUpdate();
 
