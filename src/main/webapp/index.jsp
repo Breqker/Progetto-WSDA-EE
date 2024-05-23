@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+    <title>JSP - Hello World</title>
 </head>
 <body>
 <h1><%= "SERVER ATTIVO" %></h1>
 <br/>
-<a href="test_tab_segnalazioni.jsp">*TEST TABELLA SEGNALAZIONI*</a>
+<a href="Schermata_monitoraggio/monitoraggio.jsp">SCHERMATA DI MONITORAGGIO</a>
 </body>
 </html>
