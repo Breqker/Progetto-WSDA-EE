@@ -6,7 +6,7 @@ public class Impianto {
     private double latitudine;
     private double longitudine;
 
-    // Getters and Setters
+
     public String getIdImpianto() {
         return idImpianto;
     }
@@ -40,7 +40,7 @@ public class Impianto {
     }
 
 
-    // Metodo toString per la rappresentazione testuale dell'oggetto
+
     @Override
     public String toString() {
         return "Impianto{" +

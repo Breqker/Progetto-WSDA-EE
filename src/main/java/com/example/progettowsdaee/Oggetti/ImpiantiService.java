@@ -30,7 +30,7 @@ public class ImpiantiService {
                 allImpianti.add(impianto);
             }
 
-            // Query per ottenere gli impianti attivi negli ultimi 5 minuti
+
             String activeImpiantiQuery = "SELECT i.id_impianto, i.id_palinsesto " +
                     "FROM caf.impianto i " +
                     "JOIN caf.segnalazioni s ON i.id_impianto = s.cod_impianto AND i.id_palinsesto = s.cod_palinsesto " +
