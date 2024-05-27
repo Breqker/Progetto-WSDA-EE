@@ -1,17 +1,19 @@
 package com.example.progettowsdaee.database;
 
-
 import java.sql.Connection;
-import java.sql.DriverManager;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 
 public class DBConnection {
     public static Connection getConnection() {
-        String connectionURL = "jdbc:mysql://localhost:3306/caf?useLegacyDatetimeCode=false&serverTimezone=Europe/Rome";
+        Context ctx;
+        DataSource ds;
         Connection connection;
-
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(connectionURL, "root", "root");
+            ctx = new InitialContext();
+            ds = (DataSource) ctx.lookup("java:comp/env/jdbc/caf");
+            connection = ds.getConnection();
         } catch (Exception exc) {
             connection = null;
         }

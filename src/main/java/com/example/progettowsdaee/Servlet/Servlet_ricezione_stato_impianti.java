@@ -17,25 +17,8 @@ import java.sql.*;
 
 @WebServlet(name = "Servlet_ricezione_stato_impianti", urlPatterns = "/monitoraggio_servlet")
 public class Servlet_ricezione_stato_impianti extends HttpServlet {
-    protected void doOptions(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setStatus(HttpServletResponse.SC_OK);
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        out.println("<html><head><title>Funziona</title></head><body><h1>Funziona</h1></body></html>");
-    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
-        response.setHeader("Access-Control-Allow-Credentials", "true");
 
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = request.getReader();
@@ -48,7 +31,7 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
         JsonObject jsonObject = jsonReader.readObject();
 
-        // Recupera i dati dalla richiesta JSON
+
         String idSegnalazione = jsonObject.getString("idSegnalazione");
         String codImpianto = jsonObject.getString("codImpianto");
         String codPalinsesto = jsonObject.getString("codPalinsesto");
