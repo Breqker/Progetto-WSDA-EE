@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     impiantiWithStatusJson.forEach(function(impianto_ws) {
         // Crea un'icona per il marker
-        var iconUrl = impianto_ws.active ? 'immagini/switch-on.png' : 'immagini/switch-off.png';
+        var iconUrl = impianto_ws.isActive ? 'immagini/switch-on.png' : 'immagini/switch-off.png';
         var icon = L.icon({
             iconUrl: iconUrl,
             iconSize: [70, 70],
@@ -22,14 +22,30 @@ document.addEventListener("DOMContentLoaded", function() {
         var marker = L.marker([impianto_ws.latitudine, impianto_ws.longitudine], { icon: icon })
             .addTo(map);
 
-        // Crea il contenuto del popup manualmente
-        var popupContent = '<p>ID Impianto: ' + impianto_ws.idImpianto + '</p>' +
-            '<p>ID Palinsesto: ' + impianto_ws.idPalinsesto + '</p>' +
-            '<p>Latitudine: ' + impianto_ws.latitudine + '</p>' +
-            '<p>Longitudine: ' + impianto_ws.longitudine + '</p>' +
-            '<p>Attivo: ' + impianto_ws.isActive + '</p>';
+        // Funzione per ottenere l'indirizzo dalle coordinate
+        function getAddress(lat, lon, callback) {
+            var url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
 
-        // Aggiungi il popup al marker
-        marker.bindPopup(popupContent);
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    callback(data);
+                })
+                .catch(error => console.error('Errore:', error));
+        }
+
+        // Ottieni l'indirizzo e aggiungi il popup al marker
+        getAddress(impianto_ws.latitudine, impianto_ws.longitudine, function(addressData) {
+            var address = addressData.display_name || 'Indirizzo non disponibile';
+            var popupContent = '<p>ID Impianto: ' + impianto_ws.idImpianto + '</p>' +
+                '<p>ID Palinsesto: ' + impianto_ws.idPalinsesto + '</p>' +
+                '<p>Indirizzo: ' + address + '</p>';
+            marker.bindPopup(popupContent);
+        });
     });
 });
