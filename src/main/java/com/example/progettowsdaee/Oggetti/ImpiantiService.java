@@ -40,7 +40,7 @@ public class ImpiantiService {
 
             while (activeImpiantiResultSet.next()) {
                 String idImpianto = activeImpiantiResultSet.getString("id_impianto");
-                String idPalinsesto = activeImpiantiResultSet.getString("id_palinsesto");
+                String idPalinsesto = activeImpiantiResultSet.getString("ref_palinsesto");
                 activeImpianti.add(idImpianto + "-" + idPalinsesto);
             }
 
