@@ -31,7 +31,6 @@ public class Servlet_ricezione_stato_impianti extends HttpServlet {
         JsonReader jsonReader = Json.createReader(new StringReader(jsonString));
         JsonObject jsonObject = jsonReader.readObject();
 
-
         String idSegnalazione = jsonObject.getString("idSegnalazione");
         String codImpianto = jsonObject.getString("codImpianto");
         String codPalinsesto = jsonObject.getString("codPalinsesto");
