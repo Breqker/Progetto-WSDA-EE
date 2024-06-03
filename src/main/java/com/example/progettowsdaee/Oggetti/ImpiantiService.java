@@ -24,23 +24,23 @@ public class ImpiantiService {
             while (allImpiantiResultSet.next()) {
                 Impianto impianto = new Impianto();
                 impianto.setIdImpianto(allImpiantiResultSet.getString("id_impianto"));
-                impianto.setIdPalinsesto(allImpiantiResultSet.getString("id_palinsesto"));
+                impianto.setIdPalinsesto(allImpiantiResultSet.getString("ref_palinsesto"));
                 impianto.setLatitudine(allImpiantiResultSet.getDouble("latitudine"));
                 impianto.setLongitudine(allImpiantiResultSet.getDouble("longitudine"));
                 allImpianti.add(impianto);
             }
 
 
-            String activeImpiantiQuery = "SELECT i.id_impianto, i.id_palinsesto " +
+            String activeImpiantiQuery = "SELECT i.id_impianto, i.ref_palinsesto " +
                     "FROM caf.impianto i " +
-                    "JOIN caf.segnalazioni s ON i.id_impianto = s.cod_impianto AND i.id_palinsesto = s.cod_palinsesto " +
+                    "JOIN caf.segnalazioni s ON i.id_impianto = s.cod_impianto AND i.ref_palinsesto = s.cod_palinsesto " +
                     "WHERE s.data_inserimento >= NOW() - INTERVAL 5 MINUTE";
             PreparedStatement activeImpiantiStatement = connection.prepareStatement(activeImpiantiQuery);
             ResultSet activeImpiantiResultSet = activeImpiantiStatement.executeQuery();
 
             while (activeImpiantiResultSet.next()) {
                 String idImpianto = activeImpiantiResultSet.getString("id_impianto");
-                String idPalinsesto = activeImpiantiResultSet.getString("id_palinsesto");
+                String idPalinsesto = activeImpiantiResultSet.getString("ref_palinsesto");
                 activeImpianti.add(idImpianto + "-" + idPalinsesto);
             }
 

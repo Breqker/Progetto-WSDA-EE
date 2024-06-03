@@ -14,7 +14,6 @@
         e.printStackTrace();
     }
 
-
     String impiantiWithStatusJson = new Gson().toJson(impiantiWithStatus);
 %>
 <!DOCTYPE html>
@@ -30,6 +29,8 @@
 <div id="map"></div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="monitoraggio.js"></script>
-<script> var impiantiWithStatusJson = <%= impiantiWithStatusJson %>;</script>
+<script>
+    var impiantiWithStatusJson = JSON.parse('<%= impiantiWithStatusJson %>'.replace(/&quot;/g, '\"'));
+</script>
 </body>
 </html>

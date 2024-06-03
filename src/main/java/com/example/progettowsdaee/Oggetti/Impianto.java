@@ -45,7 +45,7 @@ public class Impianto {
     public String toString() {
         return "Impianto{" +
                 "id_impianto='" + idImpianto + '\'' +
-                ", id_palinsesto='" + idPalinsesto + '\'' +
+                ", ref_palinsesto='" + idPalinsesto + '\'' +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
                 '}';
