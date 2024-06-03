@@ -5,8 +5,9 @@ public class Impianto {
     private String idPalinsesto;
     private double latitudine;
     private double longitudine;
+    private boolean stato; // Nuovo campo
 
-
+    // Getter e Setter
     public String getIdImpianto() {
         return idImpianto;
     }
@@ -39,16 +40,22 @@ public class Impianto {
         this.longitudine = longitudine;
     }
 
+    public boolean getStato() {
+        return stato;
+    }
 
+    public void setStato(boolean stato) {
+        this.stato = stato;
+    }
 
     @Override
     public String toString() {
         return "Impianto{" +
-                "id_impianto='" + idImpianto + '\'' +
-                ", ref_palinsesto='" + idPalinsesto + '\'' +
+                "idImpianto='" + idImpianto + '\'' +
+                ", idPalinsesto='" + idPalinsesto + '\'' +
                 ", latitudine=" + latitudine +
                 ", longitudine=" + longitudine +
+                ", stato=" + stato +
                 '}';
     }
-
 }

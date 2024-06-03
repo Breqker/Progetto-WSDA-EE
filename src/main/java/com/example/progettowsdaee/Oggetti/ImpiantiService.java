@@ -27,6 +27,7 @@ public class ImpiantiService {
                 impianto.setIdPalinsesto(allImpiantiResultSet.getString("ref_palinsesto"));
                 impianto.setLatitudine(allImpiantiResultSet.getDouble("latitudine"));
                 impianto.setLongitudine(allImpiantiResultSet.getDouble("longitudine"));
+                impianto.setStato(allImpiantiResultSet.getBoolean("stato"));
                 allImpianti.add(impianto);
             }
 
@@ -50,6 +51,7 @@ public class ImpiantiService {
                 impiantoWithStatus.setIdPalinsesto(impianto.getIdPalinsesto());
                 impiantoWithStatus.setLatitudine(impianto.getLatitudine());
                 impiantoWithStatus.setLongitudine(impianto.getLongitudine());
+                impiantoWithStatus.setStato(impianto.getStato());
                 String key = impianto.getIdImpianto() + "-" + impianto.getIdPalinsesto();
                 impiantoWithStatus.setActive(activeImpianti.contains(key));
                 impiantiWithStatus.add(impiantoWithStatus);
