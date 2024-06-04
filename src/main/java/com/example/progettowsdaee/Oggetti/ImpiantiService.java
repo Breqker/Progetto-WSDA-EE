@@ -16,7 +16,6 @@ public class ImpiantiService {
             List<Impianto> allImpianti = new ArrayList<>();
             Set<String> activeImpianti = new HashSet<>();
 
-            // Query per ottenere tutti gli impianti
             String allImpiantiQuery = "SELECT * FROM caf.impianto";
             PreparedStatement allImpiantiStatement = connection.prepareStatement(allImpiantiQuery);
             ResultSet allImpiantiResultSet = allImpiantiStatement.executeQuery();

@@ -7,7 +7,6 @@ public class Impianto {
     private double longitudine;
     private boolean stato; // Nuovo campo
 
-    // Getter e Setter
     public String getIdImpianto() {
         return idImpianto;
     }

@@ -26,7 +26,17 @@
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-<div id="map"></div>
+<header>
+    <h1>Mappa degli Impianti</h1>
+</header>
+<div id="map-container">
+    <div id="map"></div>
+    <div id="legend">
+        <h2>Legenda</h2>
+        <p><img src="immagini/switch-on.png" alt="Attivo" width="30" height="30"> Impianto Attivo</p>
+        <p><img src="immagini/switch-off.png" alt="Non Attivo" width="30" height="30"> Impianto Non Attivo</p>
+    </div>
+</div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="monitoraggio.js"></script>
 <script>

@@ -43,4 +43,8 @@ document.addEventListener("DOMContentLoaded", function() {
             marker.bindPopup(popupContent);
         });
     });
+
+    setInterval(function() {
+        location.reload();
+    }, 15000);
 });

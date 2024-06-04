@@ -4,9 +4,67 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #0056b3;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+    font-size: 1.5em;
+    font-family: Arial, sans-serif;
+}
+
+#map-container {
+    flex: 1;
+    display: flex;
+    box-sizing: border-box;
+    position: relative;
+    border: 2px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 #map {
-    width: 100%;
+    flex: 1;
     height: 100%;
+}
+
+#legend {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 20%;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    z-index: 1000;
+}
+
+#legend h2 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #0056b3;
+    border-bottom: 2px solid #0056b3;
+    padding-bottom: 5px;
+}
+
+#legend p {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+}
+
+#legend img {
+    margin-right: 0.5%;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    padding: 1%;
+    background-color: #f9f9f9;
 }
