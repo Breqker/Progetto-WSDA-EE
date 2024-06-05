@@ -33,8 +33,8 @@
     <div id="map"></div>
     <div id="legend">
         <h2>Legenda</h2>
-        <p><img src="immagini/switch-on.png" alt="Attivo" width="30" height="30"> Impianto Attivo</p>
-        <p><img src="immagini/switch-off.png" alt="Non Attivo" width="30" height="30"> Impianto Non Attivo</p>
+        <p><img src="immagini/switch-on.png" alt="Attivo" width="30" height="30"> Impianto in riproduzione</p>
+        <p><img src="immagini/switch-off.png" alt="Non Attivo" width="30" height="30"> Impianto non in riproduzione</p>
     </div>
 </div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
